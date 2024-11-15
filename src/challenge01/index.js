@@ -31,8 +31,6 @@ function unlockTerminal(initialCode, movements) {
       const value =
         Number(initialValue) +
         (finalMovements[index] ? Number(finalMovements[index]) : 0)
-      console.log(value, index)
-
       return value < 0 ? 10 + value : value % 10
     })
     .join('')
