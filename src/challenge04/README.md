@@ -1,28 +1,60 @@
-# ** Hackers dañan sistema de archivos **
-En un mundo donde la información es poder, un hacker conocido como Savipo Yatar descubre una serie de archivos en un servidor altamente protegido.
+## Desafío 4: Evitando el caos en la red
 
-Estos archivos contienen secretos que podrían cambiar el curso de la historia. Pero hay un problema: algunos de los archivos son falsos, diseñados para engañar a los intrusos. Savipo Yatar debe determinar rápidamente cuáles archivos son reales y cuáles son falsos.
+¡La IA maligna ΩMEGA está atacando la red de nodos de la empresa! Cada nodo tiene un identificador único que es un número entero y está conectado a otros nodos, formando una compleja estructura.
+ΩMEGA está destruyendo todas las redes que consten de 3 nodos o más conectados entre sí. ¡Hay que descubrir qué nodos están a salvo de sus ataques!
 
-Cada archivo tiene un nombre con dos partes, separadas por un guion (-). La primera parte es una cadena alfanumérica y la segunda es unchecksum, que es una cadena formada por los caracteres que sólo aparecen una vez en la primera parte y en el orden en que aparecen.
+### ¿Cómo funciona la red?
 
-Escribe un programa que determine si un archivo es real o falso basado en estas reglas.
+La red se representa como una lista de pares de conexiones entre nodos. Por ejemplo:
 
-Ejemplos:
+Entrada: [[1, 2], [2, 3], [4, 5]]
+Esto significa:
+
 ```
-Nombre del archivo: xyzz33-xy
-Resultado: ✅ Real (El checksum es válido)
-
-Nombre del archivo: abcca1-ab1
-Resultado: ❌ Falso (El checksum debería ser b1, es incorrecto)
-
-Nombre del archivo: abbc11-ca
-Resultado: ❌ Falso (El checksum debería ser ac, el orden es incorrecto)
+El nodo 1 está conectado al nodo 2.
+El nodo 2 está conectado al nodo 3.
+El nodo 4 está conectado al nodo 5.
 ```
 
-Cada línea indica el nombre del archivo y su correspondiente checksum, separados por un guion (-).
+En este caso:
 
-# ** Cómo resolverlo **
-1. Analiza la lista de nombres de archivos y sus checksums que encontrarás en este archivo: https://codember.dev/data/files_quarantine.txt
+```
+Los nodos 1, 2 y 3 forman un grupo conectado.
+Los nodos 4 y 5 forman otro grupo conectado.
+```
 
-2. Busca el archivo real número 33 (de todos los archivos reales, el 33º en orden de apareción) y envía su checksum con submit. Por ejemplo si el archivo es xyzz33-xy, harías:
-submit xy
+Ejemplo 1
+
+```
+Entrada: [[1, 2], [2, 3], [4, 5]]
+Redes: [1, 2, 3] y [4, 5]
+ΩMEGA destruye la red [1, 2, 3]
+Nodos a salvo: 4 y 5
+Salida: [4, 5]
+```
+
+Ejemplo 2
+
+```
+Entrada: [[1, 2], [2, 3], [3, 4]]
+Redes: [1, 2, 3, 4]
+ΩMEGA destruye la red [1, 2, 3, 4]
+Nodos a salvo: ninguno
+Salida: []
+```
+
+Ejemplo 3
+
+```
+Entrada: [[4, 6], [7, 9], [10, 12], [12, 16]]
+Redes: [4, 6], [7, 9], [10, 12, 16]
+ΩMEGA destruye la red [10, 12, 16]
+Nodos a salvo: 4, 6, 7 y 9
+Salida: [4, 6, 7, 9]
+```
+
+### ¿Qué debes hacer?
+
+Accede al archivo network.txt, que contiene una lista de conexiones entre nodos. Envía la lista de nodos ordenados de forma ascendente, separado por comas y sin espacios, que se han salvado del ataque. Por ejemplo, del Ejemplo 1 enviarías a la terminal submit 4,5.
+
+### Pista: Hay 70 nodos a salvo... ¡ahora sólo falta saber cuáles son!

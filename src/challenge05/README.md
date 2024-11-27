@@ -1,31 +1,33 @@
-# ** El problema final **
-Finalmente los hackers han conseguido acceder a la base de datos y la han dejado corrupta. Pero parece que han dejado un mensaje oculto en la base de datos. ¿Podrás encontrarlo?
+## Desafío 5: ¡Encuentra a ΩMEGA!
 
-Nuestra base de datos está en formato .csv. Las columnas son id, username, email, age, location.
+La IA maligna ΩMEGA está acorralada. Tras revisar todos los nodos sanos de la red en el reto anterior... ¡hemos detectado que ΩMEGA se ha escondido en uno!
 
-Un usuario sólo es válido si:
+No sabemos exactamente cuál es... pero sabemos las reglas que ha seguido ΩMEGA para esconderse.
 
-- id: existe y es alfanumérica
-- username: existe y es alfanumérico
-- email: existe y es válido (sigue el patrón user@dominio.com)
-- age: es opcional pero si aparece es un número
-- location: es opcional pero si aparece es una cadena de texto
-Ejemplos:
+Necesitamos encontrar los números que cumplen las siguientes condiciones:
+
+El número es primo.
+La suma de sus dígitos también es un número primo.
+Tu tarea es escribir un programa que encuentre cuántos números de la lista cumplen con estas condiciones y determinar cuál es el tercer número que cumple con ellas al recorrer la lista en orden ascendente.
+
+Ejemplo:
+
+Si tuviéramos la lista: 11,12,13,14
+
 ```
-Entrada: 1a421fa,alex,alex9@gmail.com,18,Barcelona
-Resultado: ✅ Válido
-
-Entrada: 9412p_m,maria,mb@hotmail.com,22,CDMX
-Resultado: ❌ Inválido (id no es alfanumérica, sobra el _)
-
-Entrada: 494ee0,madeval,mdv@twitch.tv,,
-Resultado: ✅ Válido (age y location son opcionales)
-Entrada: 494ee0,madeval,twitch.tv,22,Montevideo
-Resultado: ❌ Inválido (email no es válido)
+11: Es primo. 1 + 1 = 2, que es primo. → Cumple.
+12: No es primo. → No cumple.
+13: Es primo. 1 + 3 = 4, que no es primo. → No cumple.
+14: No es primo. → No cumple.
 ```
 
-# ** Cómo resolverlo **
-1. Analiza la lista de entradas de la baes de datos y detecta los inválidos: https://codember.dev/data/database_attacked.txt
+En este caso, solo un número cumple las condiciones, y ese número sería el primero (11).
 
-2. Encuentra el primer caracter (número o letra) del username de cada usuario inválido. Júntalos por orden de aparición y descubre el mensaje oculto. Luego envíalo con submit. Por ejemplo:
-submit att4ck
+### ¿Qué debes hacer?
+
+Analiza la lista de nodos del resultado del reto anterior y encuentra todos los números que cumplen las condiciones.
+Determina cuántos números cumplen las condiciones.
+Identifica el tercer número que cumple las condiciones al recorrer la lista en orden ascendente.
+Respuesta:
+
+Envía el número total de números que cumplen las condiciones y el tercer número encontrado, separados por un guión. Por ejemplo, si hay 4 números que cumplen y el tercer número es 11, enviarías: submit 4-11
